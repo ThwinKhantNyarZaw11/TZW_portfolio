@@ -139,3 +139,33 @@ function showProjectDetails(projectId) {
 document.addEventListener('DOMContentLoaded', () => {
     populateProjects();
 });
+
+// Mobile menu toggle
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuItems = document.querySelectorAll('#mobile-menu a');
+
+// Toggle mobile menu
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+}
+
+// Close mobile menu when clicking a link
+mobileMenuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+    });
+});
+
+// Toggle mobile menu on button click
+mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+    }
+});
